@@ -17,7 +17,7 @@ void towerOfHanoi(int n, char from, char to,
 int main()
 {
 	int n;
-	cout << " ";
+	cout<<"Enter number of disks:"
 	cin >> n;
 
 	towerOfHanoi(n, 'A', 'C', 'B');
