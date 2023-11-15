@@ -5,7 +5,7 @@ class Array
 {
 	private:
 		int array[100];
-		int count;
+		int count = 0;
 		
 	public:
 		void Add(int);
@@ -33,11 +33,13 @@ Array::void Insert(int index,int value)
 //--------------delete-------------------------
 Array::int Delete(int index)
 {
-	      for(int i = index; i < count; i++){
-            this->array[i] = array[i + 1];
-        }
-        count--;
-        return array[index];
+	int deleted-item=this->array[index];
+	for(int i=index; i<=count; i++)
+		{
+			this-> array[i]= this->array[i+1];
+		}
+	this-> count--;
+	return deleted-item;
 }
 //--------------find---------------------------
 Array::int Find(int value)
