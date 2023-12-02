@@ -1,12 +1,12 @@
 #include<iostream>
 using namespace std;
-
+//--- creating a data type for nodes ----
 struct node
 {
 	int value;
 	node *link;
 };
-
+//--- definition of linked list class ---
 class Linked_list
 {
   private:
@@ -55,13 +55,55 @@ void Linked_list::insert_at_end(int data)
 	temp->link = new_node;
 	new_node->link = NULL;
 }
-//--- insertion at index----------------
+//--- insertion at index-----------------
 void Linked_list::insert_at_index(int data, int index)
 {
-	
+	node *new_node, *trail = head;
+	new_node->value = data;
+	for (int i = 0; i < index-1; i++)
+	{
+		trail = trail->link;
+	}
+	new_node->link = trail->link;
+	trail = new_node;
 }
-//--- size of the list ----------
+//--- size of the list ------------------
 int Linked_list::size_of_list()
+{
+
+}
+//--- updat at index --------------------
+void Linked_list::update(int data,int index)
+{
+
+}
+//--- removing from the begining --------
+int Linked_list::remove_at_begin()
+{
+
+}
+//--- removing from the end -------------
+int Linked_list::remove_at_end()
+{
+
+}
+//--- removing at index -----------------
+int Linked_list::remove_at_index(int index)
+{
+
+}
+//--- adding a list to our current list -
+void Linked_list::concatenate(node *ptr)
+{
+
+}
+//--- inverting the list ----------------
+void Linked_list::invert()
+{
+
+}
+//===== MAIN ====================================
+int main()
 {
 
 }
