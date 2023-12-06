@@ -30,6 +30,7 @@ class Linked_list
 void Linked_list::insert_at_begin(int data)
 {
 	node *new_node;
+	new_node = new node;
 	new_node->value = data;
 	if(head==NULL)
 	{
@@ -47,6 +48,7 @@ void Linked_list::insert_at_begin(int data)
 void Linked_list::insert_at_end(int data)
 {
 	node *new_node, *temp=head;
+	new_node = new node;
     if(head==NULL)
     {
     	head = new_node;
@@ -67,6 +69,7 @@ void Linked_list::insert_at_end(int data)
 void Linked_list::insert_at_index(int data, int index)
 {
 	node *new_node, *trail = head;
+	new_node = new node;
 	new_node->value = data;
 	for (int i = 0; i < index-1; i++)
 	{
@@ -127,7 +130,7 @@ void Linked_list::print()
        }
 	while (temp != NULL)
 	{
-		cout << temp->value << "A ";
+		cout << temp->value << " ";
 		temp = temp->link;
 	}
 }
@@ -135,9 +138,10 @@ void Linked_list::print()
 int main()
 {
 	Linked_list list;
-	list.insert_at_end(1);
-//	list.insert_at_begin(2);
-//    list.insert_at_begin(3);
+	list.insert_at_begin(1);
+	list.insert_at_begin(2);
+    list.insert_at_begin(3);
+	list.insert_at_end(4);
 	list.print();
 	return 0;
 }
