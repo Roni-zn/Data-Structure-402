@@ -9,21 +9,19 @@ struct node
 //--- definition of linked list class ---
 class Linked_list
 {
-  private:
-	node *head=NULL;
-
   public:
+  	node *head=NULL;
 	void insert_at_begin(int data); //olia
 	void insert_at_index(int data, int index);//olia
 	void insert_at_end(int data);//olia
-	void update(int data, int index);//olia
-	int remove_at_begin ();//ronak
-	int remove_at_index (int index);//ronak
-	int remove_at_end ();//ronak
-	int size_of_list();//ronak
-	void concatenate(node *ptr);//olia
-	void invert();//ronak
-	void print();//temporary
+	void update(int data, int index);
+	int remove_at_begin ();
+	int remove_at_index (int index);
+	int remove_at_end ();
+	int size_of_list();
+	void concatenate(node *head2);
+	void invert();
+	void print();
 };
 
 //--- insertion at the begining ---------
@@ -71,7 +69,7 @@ void Linked_list::insert_at_index(int data, int index)
 	node *new_node, *trail = head;
 	new_node = new node;
 	new_node->value = data;
-	for (int i = 0; i < index-1; i++)
+	for (int i = 1; i < index-1; i++)
 	{
 		trail = trail->link;
 	}
@@ -94,7 +92,7 @@ int Linked_list::size_of_list()
 void Linked_list::update(int data,int index)
 {
 	node *temp = head;
-	for (int i = 0; i < index; i++)
+	for (int i = 1; i < index; i++)
 	{
 		temp = temp->link;
 	}
@@ -104,35 +102,48 @@ void Linked_list::update(int data,int index)
 //--- removing from the begining --------
 int Linked_list::remove_at_begin()
 {
+	int data=head->value;
 	head = head->link;
+	return data;
 }
 //--- removing from the end -------------
 int Linked_list::remove_at_end()
 {
 	
 	node *temp=head;
-	
-	while (temp->link->link != NULL)
+	int data;
+	while (temp->link->link!= NULL)
 	{
 		temp = temp->link;
 	}
-		temp->link = NULL;
+	data=temp->link->value;
+	temp->link=NULL;
+	return data;
+	
 }
 //--- removing at index -----------------
 int Linked_list::remove_at_index(int index)
 {
-			node *temp = head;
-	for(int i = 0; i < index-1; i++)
+	node *temp = head;
+	int data;
+	for(int i = 1; i < index-1; i++)
 	{
 		if(temp->link != NULL)
 		temp = temp->link;
 	}
-	
+	data=temp->link->value;
 	temp->link = temp->link->link;
+	return data;
 }
 //--- adding a list to our current list -
-void Linked_list::concatenate(node *ptr)
+void Linked_list::concatenate(node *head2)
 {
+	node *temp = this->head;
+	while(temp->link != NULL)
+	{
+		temp=temp->link;
+	}
+	temp->link=head2;
 
 }
 //--- inverting the list ----------------
@@ -164,15 +175,10 @@ void Linked_list::print()
 		cout << temp->value << " ";
 		temp = temp->link;
 	}
+	cout<<endl;
 }
 //===== MAIN ====================================
 int main()
 {
-	Linked_list list;
-	list.insert_at_begin(1);
-	list.insert_at_begin(2);
-    list.insert_at_begin(3);
-	list.insert_at_end(4);
-	list.print();
 	return 0;
 }
