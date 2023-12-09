@@ -58,7 +58,7 @@ void Circular_Linked_list::insert_at_end(int data)
 	}
 	else
 	{
-		new_node->link = last->link->link;
+		new_node->link = head;
 		last->link = new_node;
 		last = new_node;
 	}
@@ -81,11 +81,20 @@ void Circular_Linked_list::insert_at_index(int data,int index)
 //---- update --------------------------
 void Circular_Linked_list::update(int data,int index)
 {
-	
+	node *temp = head;
+	for(int i = 1 ; i<index ;i++ )
+	{
+		temp = temp->link;
+	}
+	temp->value = data ;
 }
-//---- concatenate ---------------------
+//---- concatenate -------- second list's
+// last pointer should be passed to this method -
 void Circular_Linked_list::concatenate(node *ptr)
 {
+	this->last->link = ptr->link ;
+	this->last = ptr ;
+	this->last->link = this->head ;
 	
 } 
 //---- size ----------------------------
@@ -157,18 +166,12 @@ void Circular_Linked_list::print()
 	{
 		
 	   temp = head; 
-	   while(temp != last)
-	   {
-	   	cout<<temp->value<<" ";
-	   	temp = temp->link;
-	   } 
-	   cout<<temp->value<<endl; 
-		/*do
+		do
 		{
 			cout << temp->value << " ";
 			temp = temp->link;
-		} while (temp->link != head );
-		cout<<endl;*/
+		} while (temp != head );
+		cout<<endl;
 	}
 }
 // ==== MAIN ===========================================================
@@ -180,8 +183,6 @@ int main()
 	l1.insert_at_end(2);
 	l1.insert_at_end(3);
 	l1.insert_at_end(4);
-	l1.print();
-	l1.insert_at_index(6,3);
 	l1.print();
 
 	return 0;
