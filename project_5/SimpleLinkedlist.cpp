@@ -47,6 +47,7 @@ void Linked_list::insert_at_end(int data)
 {
 	node *new_node, *temp=head;
 	new_node = new node;
+	new_node->value = data;
     if(head==NULL)
     {
     	head = new_node;
@@ -54,7 +55,6 @@ void Linked_list::insert_at_end(int data)
 	}
 	else
 	{
-    	new_node->value = data;
     	while (temp->link != NULL)
 	    {
 			temp = temp->link;
@@ -176,9 +176,4 @@ void Linked_list::print()
 		temp = temp->link;
 	}
 	cout<<endl;
-}
-//===== MAIN ====================================
-int main()
-{
-	return 0;
 }
