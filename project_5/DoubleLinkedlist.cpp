@@ -121,44 +121,46 @@ void Double_Linked_list::update(int data,int index)
 //--- removing from the begining --------
 int Double_Linked_list::remove_at_begin()
 {
-	node *temp = head->next->next;
-	while(head != NULL)
-	{
-	 temp-> prev = NULL;
-	 head = head->next;
-	}
-	temp -> prev = NULL;	
+	int data;
+	data = head->value;
+	head = head->next;
+	head -> prev = NULL;
+	return data;
+		
 }
 
 //--- removing from the end -------------
 int Double_Linked_list::remove_at_end()
 {
+	int data;
     node *temp=head;
 	
-		while (temp->next != NULL)
+	while (temp->next != NULL)
 	{
 		temp = temp->next;
 	}
-		temp-> next = NULL;
+	data = temp->value;
+	temp->prev->next = NULL;
+	return data;
 }
 
 //--- removing at index -----------------
 int Double_Linked_list::remove_at_index(int index)
 {
-	node *temp,*ptr;
+	int data;
+	node *temp;
 	temp = head;
-	for (int i = 0; i < index-1; i++)
+	for (int i = 1; i < index ; i++)
 	{
 		if (temp->next != NULL)
 		{
 			temp = temp-> next;
 		}
-		ptr = temp -> next;  
-        temp -> next = ptr -> next;  
-        ptr -> next -> prev = temp; 
 	}
- 
-
+	data = temp->value; 
+	temp->prev->next = temp->next;
+	temp->next->prev = temp->prev;
+	return data;
 }
 
 //--- adding a list to our current list -
@@ -178,6 +180,17 @@ void Double_Linked_list::concatenate(node *ptr)
 //--- inverting the list ----------------
 void Double_Linked_list::invert()
 {
+    node* temp = NULL;
+    node* current = head;
+
+    while (current != NULL) {
+        temp = current->prev;
+        current->prev = current->next;
+        current->next = temp;
+        current = current->prev;
+    }
+    if (temp != NULL)
+        head = temp->prev;
 
 }
 //--- print -----------------------------
@@ -204,6 +217,5 @@ void Double_Linked_list::print()
 //===== MAIN ====================================
 int main()
 {
-
 	return 0;
 }
