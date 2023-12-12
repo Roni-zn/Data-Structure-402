@@ -12,17 +12,17 @@ class Circular_Linked_list
   public:
   	node *head=NULL;
   	node *last=NULL;
-	void insert_at_begin(int data); //olia
-	void insert_at_index(int data, int index);//olia
-	void insert_at_end(int data);//olia
-	void update(int data, int index);//olia
-	int remove_at_begin ();//ronak
-	int remove_at_index (int index);//ronak
-	int remove_at_end ();//ronak
-	int size_of_list();//ronak
-	void concatenate(node *ptr);//olia
-	void invert();//ronak
-	void print();//temporary
+	void insert_at_begin(int data); 
+	void insert_at_index(int data, int index);
+	void insert_at_end(int data);
+	void update(int data, int index);
+	int remove_at_begin ();
+	int remove_at_index (int index);
+	int remove_at_end ();
+	int size_of_list();
+	void concatenate(node *ptr);
+	void invert();
+	void print();
 };
 
 //---- insertion at begininig -----------
@@ -41,6 +41,7 @@ void Circular_Linked_list::insert_at_begin(int data)
 	{
 		new_node->link = this->head;
 		this->head = new_node;
+		last->link = new_node;
 	}
 	
 }
@@ -144,13 +145,14 @@ int Circular_Linked_list::remove_at_index (int index)
 	int data;
 	node *temp , *current;
 	current = head;
-	for (int i= 0; i < index ; i++)
+	for (int i= 1; i <= index ; i++)
 	{
 		temp = current;
+		data = current->value;
 		current = current->link;
 	}
 	temp->link = current -> link;
-	data = current->value;
+	
 	return data;
 }
 //---- print ----------------------------
@@ -197,12 +199,20 @@ void Circular_Linked_list:: invert()
     head = prev;
   }
 }
-
-// ==== MAIN ===========================================================
-
 int main()
 {
+	Circular_Linked_list l;
+	l.insert_at_begin(1);
+	l.insert_at_end(2);
+	l.insert_at_end(3);
+	l.insert_at_begin(4);
+	l.print();
+/*	cout<<l.size_of_list()<<endl;
+	cout<<l.remove_at_index(2)<<endl;
+	l.print();
+	cout<<l.size_of_list();*/
 	return 0;
+	
 }
 
 
