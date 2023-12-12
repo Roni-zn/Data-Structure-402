@@ -119,9 +119,9 @@ int Circular_Linked_list::remove_at_begin ()
 		temp = temp ->link;
 	}
 	
+	data = head ->value ;
 	temp ->link = head->link;
 	head = head->link;
-	data = temp->value;
 	return data;
 }
 //---- remove at the end ---------------
@@ -144,7 +144,7 @@ int Circular_Linked_list::remove_at_index (int index)
 	int data;
 	node *temp , *current;
 	current = head;
-	for (int i= 0; i < index-1 ; i++)
+	for (int i= 0; i < index ; i++)
 	{
 		temp = current;
 		current = current->link;
@@ -174,17 +174,34 @@ void Circular_Linked_list::print()
 		cout<<endl;
 	}
 }
+
+void Circular_Linked_list:: invert()
+{
+	
+  if(head != NULL) 
+  {
+    node *prev = head;
+    node *temp = head;
+    node *current = head->link;
+
+    prev->link = prev;
+
+    while(current != head) {
+      temp = current->link;
+      current ->link = prev;
+      head->link = current;
+      prev = current;
+      current = temp;
+    }
+
+    head = prev;
+  }
+}
+
 // ==== MAIN ===========================================================
 
 int main()
 {
-	Circular_Linked_list l1;
-	l1.insert_at_begin(1);
-	l1.insert_at_end(2);
-	l1.insert_at_end(3);
-	l1.insert_at_end(4);
-	l1.print();
-
 	return 0;
 }
 
