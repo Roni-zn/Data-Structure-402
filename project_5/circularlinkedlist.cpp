@@ -102,12 +102,18 @@ void Circular_Linked_list::concatenate(node *ptr)
 int Circular_Linked_list::size_of_list()
 {
 	node *temp=head;
-	int i = 0;
-	while( temp->link != head )
-	{
-		temp = temp->link;
-		i++;
-	}
+	int i ;
+	if(head == NULL)
+		i=0;
+	else
+	{	
+		i=1;
+		while( temp->link != head )
+		{
+			temp = temp->link;
+			i++;
+		}
+   }
 	return i;	
 }
 //---- remove at the begining ----------
@@ -143,15 +149,32 @@ int Circular_Linked_list::remove_at_end ()
 int Circular_Linked_list::remove_at_index (int index)
 {
 	int data;
-	node *temp , *current;
+	node *temp , *current , *temp2;
 	current = head;
-	for (int i= 1; i <= index ; i++)
+	temp = head;
+	if(index == 1)
 	{
-		temp = current;
-		data = current->value;
-		current = current->link;
+			while( temp ->link != head)
+		{
+			temp = temp ->link;
+		}
+	
+		data = head ->value ;
+		temp ->link = head->link;
+		head = head->link;
 	}
-	temp->link = current -> link;
+	else
+	{
+		for (int i= 1; i <= index ; i++)
+		{
+			temp2 = temp;
+			temp = current;
+			data = current->value;
+			current = current->link;
+		}
+		temp2->link = current ;
+	
+	}
 	
 	return data;
 }
@@ -199,20 +222,6 @@ void Circular_Linked_list:: invert()
     head = prev;
   }
 }
-int main()
-{
-	Circular_Linked_list l;
-	l.insert_at_begin(1);
-	l.insert_at_end(2);
-	l.insert_at_end(3);
-	l.insert_at_begin(4);
-	l.print();
-/*	cout<<l.size_of_list()<<endl;
-	cout<<l.remove_at_index(2)<<endl;
-	l.print();
-	cout<<l.size_of_list();*/
-	return 0;
-	
-}
+
 
 
