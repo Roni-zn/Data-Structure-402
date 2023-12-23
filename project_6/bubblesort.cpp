@@ -36,10 +36,8 @@ void Bubblesort::print_n()
 // ----- sort -----
 int Bubblesort::bubblesort()
 {
-	int n = l.size_of_list();
-    node* h;
-    h = l.head;
-    node* i = h;
+    int n = l.size_of_list();
+    node* i = l.head;
     node* j = i->link;
   
     for (i = l.head ; i != NULL ; i = i->link)
