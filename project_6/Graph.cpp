@@ -39,7 +39,7 @@ string Graph::BFS()
     Queue queue;
     int v;
     node* temp;
-    queue.Enqueue(0);
+    queue.Enqueue(array[0].value);
     visited[0] = true;
     while( !queue.is_empty())
     {
