@@ -38,6 +38,7 @@ int Queue::Dequeue()
 	if(front==rear)
 	{
 		is_empty();
+		return 100000;
 	}
 	else
 	{
@@ -94,11 +95,6 @@ void Queue::display()
 		cout<<queue[i]<<"  ";
 	}
 	cout<<endl;
-}
-
-int main()
-{
-	return 0;	
 }
 
 
