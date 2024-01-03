@@ -96,10 +96,7 @@ void Queue::display()
 	cout<<endl;
 }
 
-int main()
-{
-	return 0;	
-}
+
 
 
 

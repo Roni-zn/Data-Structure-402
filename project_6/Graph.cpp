@@ -1,6 +1,6 @@
 #include <iostream>
-#include "E:\UniShits\Repossitories\Data-Structure-402\project_5\SimpleLinkedlist.cpp"
-#include"E:\UniShits\Repossitories\Data-Structure-402\project_3\Queue.cpp"
+#include "C:\Repositories\Data-Structure-402\project_5\SimpleLinkedlist.cpp"
+#include "C:\Repositories\Data-Structure-402\project_3\Queue.cpp"
 #include <string>
 using namespace std;
 const int Max_number = 20;
@@ -14,10 +14,10 @@ class Graph
     public:
        void AddVertex(int vertex);
        void AddEdge(int firstVertex, int secondVertex);
-       //void RemoveEdge(int firstVertex, int secondVertex);
-       //void RemoveVertex(int vertex);
+       void RemoveEdge(int firstVertex, int secondVertex);
+       void RemoveVertex(int vertex);
        string BFS();
-       //string DFS();
+       string DFS();
        void printg();
 };
 //--- find index -------------
