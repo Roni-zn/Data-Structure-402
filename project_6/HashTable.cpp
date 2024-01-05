@@ -135,18 +135,4 @@ void HashTable::print()
         cout << endl;
     }
 }
-//--- main ------------------------------------
-int main()
-{
-    HashTable h(5);
-    h.Insert(10,"ali");
-    h.Insert(13, "olia");
-    h.Insert(14, "helia");
-    // h.Insert(3,"roni");
-    // h.print();
-    // cout<<h.Search(3)<<endl;
-    // h.Delete(3);
-    // cout<<h.Search(3)<<endl;
-    h.print();
-    return 0;
-}
+
