@@ -2,7 +2,6 @@
 #include <string>
 #include <list>
 using namespace std;
-//https://www.youtube.com/watch?v=2_3fR-k-LzI
 class HashTable
 {
     private:
@@ -43,7 +42,6 @@ void HashTable::Insert(int key, string value)
 {
     int index = HashFunction(key);
     node* entry = new node(key, value);
-    //cout<<entry->key<<" "<<entry->value;
     if(!table[index].empty())
     {
         list<node*>::iterator i;
