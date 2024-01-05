@@ -1,9 +1,11 @@
 #include <iostream>
 #include "C:\Repositories\Data-Structure-402\project_5\SimpleLinkedlist.cpp"
 #include "C:\Repositories\Data-Structure-402\project_3\Queue.cpp"
+#include "C:\Repositories\Data-Structure-402\project_4\Stack.cpp"
 #include <string>
 using namespace std;
 const int Max_number = 20;
+
 class Graph
 {
     private:
@@ -52,6 +54,35 @@ string Graph::BFS()
             if(visited[temp->value] == false)
             {
                 queue.Enqueue(temp->value);
+                visited[temp->value] = true;
+            }
+            temp = temp->link;
+        }
+
+    }
+    return result;
+}
+// ----DFS ------------------
+string Graph::DFS()
+{
+    bool visited[Max_number] = {false};
+    string result;
+    Stack stack;
+    int v;
+    node* temp;
+    stack.push(array[0].value);
+    visited[0] = true;
+    while( !stack.is_empty())
+    {
+        v = stack.pop();
+        result += to_string(v);
+        temp = array[v].link;
+        //visited[v] = true;
+        while(temp != NULL)
+        {
+            if(visited[temp->value] == false)
+            {
+                stack.push(temp->value);
                 visited[temp->value] = true;
             }
             temp = temp->link;
@@ -127,21 +158,106 @@ void Graph::AddEdge(int firstVertex, int secondVertex)
     }
     
 }
+// --- remove edge -------
+void Graph::RemoveEdge(int firstVertex, int secondVertex)
+{
+    int firstIndex = findindex(firstVertex);
+    int secondIndex = findindex(secondVertex);
+
+    node* curr = array[firstIndex].link;
+    node* prev = NULL;
+    while (curr != NULL) 
+    {
+        if (curr->value == secondVertex)
+        {   
+            if (prev == NULL) {
+                array[firstIndex].link = curr->link;
+            } else {
+                prev->link = curr->link;
+            }
+            delete curr;
+            break;
+        }
+        prev = curr;
+        curr = curr->link;
+    }
+
+    curr = array[secondIndex].link;
+    prev = NULL;
+    while (curr != NULL)
+    {
+        if (curr->value == firstVertex) 
+        {
+            if (prev == NULL) {
+                array[secondIndex].link = curr->link;
+            } else {
+                prev->link = curr->link;
+            }
+            delete curr;
+            break;
+        }
+        prev = curr;
+        curr = curr->link;
+    }
+}
+//--- remove vertex ------
+void Graph::RemoveVertex(int vertex) 
+{
+    int index = findindex(vertex);
+    node* current = array[index].link;
+
+    node* prev = NULL;
+    while (current != NULL) {
+        if (current->value == vertex) 
+        {
+            if (prev == NULL) 
+            {
+                array[index].link = current->link;
+            } 
+            else 
+            {
+                prev->link = current->link;
+            }
+            break;
+        }
+        prev = current;
+        current = current->link;
+    }
+
+    for (int i = 0; i < count ; i++) 
+    {
+        if (i != index) {
+            node* current = array[i].link;
+
+            node* prev = NULL;
+            while (current != NULL) 
+            {
+                if (current->value == vertex) 
+                {
+                    if (prev == NULL) 
+                    {
+                        array[i].link = current->link;
+                    } 
+                    else 
+                    {
+                        prev->link = current->link;
+                    }
+                    break;
+                }
+                prev = current;
+                current = current->link;
+            }
+        }
+    }
+
+    for (int i = index; i < count - 1; i++) {
+        array[i] = array[i + 1];
+    }
+
+    count--;
+}
 //--- main -----
 int main()
 {
-    Graph g;
-    g.AddVertex(0);
-    g.AddVertex(1);
-    g.AddVertex(3);
-    g.AddVertex(2);
-    g.AddEdge(0,1);
-    g.AddEdge(1,2);
-    g.AddEdge(1,3);
-    g.AddEdge(2,3);
-    g.AddEdge(3,2);
-    g.printg();
-    cout<<g.BFS();
     return 0;
-
 }

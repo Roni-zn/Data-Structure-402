@@ -11,14 +11,14 @@ struct node
 
 class AVLTree
 {
-	public:
+	private:
 		int height(node *N);
 		int getBalance(node *N);
 		int max(int a, int b);
 		node* findMin(node* N);
-		node* newNode(int key);
 		node* LeftRotate(node *x);
 		node* RightRotate(node *y);
+	public:
 		node* insert( int key ,node* n);
 		node* remove(int key, node* n);
 		void preOrder(node *root);
@@ -47,26 +47,14 @@ int AVLTree::max(int a, int b)
 } 
 
 node* AVLTree::findMin(node* N)
-    {
-        if(N == NULL)
-            return NULL;
-        else if(N->left == NULL)
-            return N;
-        else
-            return findMin(N->left);
-    }
-
-
-node*  AVLTree::newNode(int key) 
-{ 
-	node* new_node = new node;
-	new_node->value = key; 
-	new_node->left = NULL; 
-	new_node->right = NULL; 
-	new_node->height = 1; 
-	return(new_node); 
+{
+    if(N == NULL)
+        return NULL;
+    else if(N->left == NULL)
+        return N;
+    else
+        return findMin(N->left);
 }
-
 
 node*  AVLTree::LeftRotate(node *x) 
 { 
@@ -206,7 +194,7 @@ void AVLTree::preOrder(node *root)
 		cout << root->value << " "; 
 		preOrder(root->left); 
 		preOrder(root->right); 
-	} 
+	}
 } 
 
 // ===== MAIN ===== 
