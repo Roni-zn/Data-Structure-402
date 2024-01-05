@@ -51,9 +51,6 @@ void HashTable::Insert(int key, string value)
         for(i = table[index].begin(); i != table[index].end(); i++)
         {
             temp = *i;
-            //cout<<111111;
-            //cout<<temp->value<<" ";
-            //cout<<endl;
             if(temp->key == key)
               break;
         
@@ -71,18 +68,6 @@ void HashTable::Insert(int key, string value)
     {
         table[index].push_front(entry);
     }
-    // cout<<temp->key;
-    // cout<<" ";
-    // cout<<temp->value;
-    // if(temp->key == key)
-    // {
-    //     temp->value = value;
-    // }
-    // else
-    // {
-    //     table[index].push_front(entry);
-    // }
-
 }
 //--- search ----------------------------------
 string HashTable::Search(int key)
